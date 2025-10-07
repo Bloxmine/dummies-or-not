@@ -183,6 +183,17 @@ h1 {
     font-style: italic;
 }
 
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+@keyframes big {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); } 
+}
+
 @font-face {
     font-family: 'Dummies';
     src: url('../fonts/dummies.ttf') format('truetype');
@@ -191,6 +202,107 @@ h1 {
 @font-face {
     font-family: 'Myriad Pro Bold Italic';
     src: url('../fonts/myriadprobolditalic.ttf') format('truetype');
+}
+
+#gameOverOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+#gameOverContent {
+    background-color: var(--mainColor);
+    border: 3px solid var(--dummiesYellow);
+    border-radius: 15px;
+    padding: 3rem 2rem;
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+#gameOverContent h2 {
+    color: var(--dummiesYellow);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-family: var(--dummiesFont);
+}
+
+#finalScore {
+    font-size: 1.5rem;
+    color: var(--accentColor);
+    margin: 1rem 0;
+    font-weight: bold;
+    transform: scale(1);
+    transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#finalScore.score-animate {
+    transform: scale(3);
+    color: var(--dummiesYellow);
+    text-shadow: 0 0 20px var(--dummiesYellow);
+}
+
+#gameOverContent p {
+    color: white;
+    font-size: 1.1rem;
+    margin: 1rem 0;
+    line-height: 1.4;
+}
+
+.real-book-image {
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 8px;
+    margin: 1.5rem auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+    display: block;
+}
+
+.real-book-image:hover {
+    transform: scale(1.05);
+}
+
+#restartButton {
+    background-color: var(--dummiesYellow);
+    color: #333;
+    border: none;
+    padding: 1rem 2.5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1.5rem;
+    font-family: var(--mainFont);
+}
+
+#restartButton:hover {
+    background-color: #FFB347;
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 @media (max-width: 600px) {
@@ -212,5 +324,17 @@ h1 {
     #scoreBoard {
         flex-direction: column;
         gap: 0.5rem;
+    }
+    
+    #gameOverContent {
+        padding: 2rem 1.5rem;
+    }
+    
+    #gameOverContent h2 {
+        font-size: 2rem;
+    }
+    
+    #finalScore.score-animate {
+        transform: scale(2.5);
     }
 }
