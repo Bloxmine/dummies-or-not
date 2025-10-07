@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Dummies or Not?</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="maincontainer">
+        <div id="gameHeader">
+            <h1>Which one is real?</h1>
+            <div id="scoreBoard">
+                <span>Score: <span id="score">0</span></span>
+                <span>High Score: <span id="highScore">0</span></span>
+            </div>
+        </div>
+        
+        <div id="gameArea">
+            <div id="booksContainer">
+                <div class="book clickable" id="book1">
+                    <div class="bookCover">
+                        <h3 class="bookTitle" id="title1">Loading...</h3>
+                        <h2 class="dummiesText">For Dummies</h2>
+                    </div>
+                </div>
+                <div class="book clickable" id="book2">
+                    <div class="bookCover">
+                        <h3 class="bookTitle" id="title2">Loading...</h3>
+                        <h2 class="dummiesText">For Dummies</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="feedback" class="hidden">
+            <p id="feedbackText"></p>
+            <button id="nextRound">Next Round</button>
+        </div>
+    </div>
+    
+    <script src="js/main.js"></script>
+</body>
+</html>

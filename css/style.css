@@ -1,0 +1,216 @@
+:root {
+    --mainFont: 'Myriad Pro Bold Italic', sans-serif;
+    --dummiesFont: 'Dummies', sans-serif;
+    --dummiesYellow: #FFD700;
+    --mainColor: #333;
+    --accentColor: #FF4500;
+    --correctColor: #4CAF50;
+    --incorrectColor: #f44336;
+    --bookBackground: #f5f5f5;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--mainFont);
+    background-color: var(--mainColor);
+    color: var(--accentColor);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#maincontainer {
+    max-width: 800px;
+    width: 100%;
+    padding: 2rem;
+    text-align: center;
+}
+
+#gameHeader {
+    margin-bottom: 2rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-family: var(--mainFont);
+    color: var(--dummiesYellow);
+}
+
+#scoreBoard {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    font-size: 1.2rem;
+    color: white;
+}
+
+#booksContainer {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin: 2rem 0;
+}
+
+.book {
+    width: 200px;
+    height: 300px;
+    perspective: 1000px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.book:hover {
+    transform: scale(1.05);
+}
+
+.bookCover {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--dummiesYellow) 0%, #FFB347 100%);
+    border: 3px solid #333;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.5rem 1rem;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    position: relative;
+}
+
+.bookTitle {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    line-height: 1.2;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    word-wrap: break-word;
+}
+
+.dummiesText {
+    font-size: 1.5rem;
+    font-family: var(--dummiesFont);
+    color: #333;
+    text-align: center;
+    margin-top: auto;
+}
+
+.book.correct {
+    animation: correctPulse 0.6s ease;
+}
+
+.book.incorrect {
+    animation: incorrectShake 0.6s ease;
+}
+
+.book.disabled {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+@keyframes correctPulse {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 var(--correctColor); }
+    50% { transform: scale(1.1); box-shadow: 0 0 0 20px rgba(76, 175, 80, 0.3); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
+}
+
+@keyframes incorrectShake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+#feedback {
+    position: fixed;
+    left: 50%;
+    bottom: 2rem;
+    transform: translateX(-50%);
+    min-width: 250px;
+    max-width: 90vw;
+    margin: 0;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    z-index: 1000;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+
+#feedback.correct {
+    background-color: var(--correctColor);
+    color: white;
+}
+
+#feedback.incorrect {
+    background-color: var(--incorrectColor);
+    color: white;
+}
+
+.hidden {
+    display: none;
+}
+
+#nextRound {
+    background-color: var(--dummiesYellow);
+    color: #333;
+    border: none;
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+}
+
+#nextRound:hover {
+    background-color: #FFB347;
+}
+
+#instructions {
+    margin-top: 2rem;
+    font-size: 1.1rem;
+    color: white;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Dummies';
+    src: url('../fonts/dummies.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Myriad Pro Bold Italic';
+    src: url('../fonts/myriadprobolditalic.ttf') format('truetype');
+}
+
+@media (max-width: 600px) {
+    #booksContainer {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
+    
+    .book {
+        width: 180px;
+        height: 270px;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    #scoreBoard {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
